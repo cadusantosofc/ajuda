@@ -1,10 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta http-equiv="refresh" content="0;url=https://galaxychat.gitbook.io/docs">
-    <title>Redirecionando...</title>
-  </head>
-  <body>
-    <p>Redirecionando para a documentação. Se não for redirecionado, <a href="https://galaxychat.gitbook.io/docs">clique aqui</a>.</p>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="4;url=https://galaxychat.gitbook.io/docs">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carregando...</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('print.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      width: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.9) 100%
+      );
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .progress-container {
+      width: 300px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 2px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1));
+      border-radius: 8px;
+      transition: width 0.1s ease;
+      animation: progress 3.5s ease-in-out forwards;
+    }
+
+    .percentage {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    @keyframes progress {
+      0% {
+        width: 0%;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    .text {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      const progressBar = document.querySelector('.progress-bar');
+      const percentage = document.querySelector('.percentage');
+      
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress++;
+        percentage.textContent = progress + '%';
+        if (progress >= 100) {
+          clearInterval(interval);
+        }
+      }, 35);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="percentage">0%</div>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="text">Carregando...</div>
+  </div>
+</body>
 </html>
